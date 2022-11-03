@@ -1,6 +1,6 @@
 // config/database.js
 module.exports = {
 
-    'url' : 'mongodb+srv://demo:demo@cluster0.q2ojb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
-    'dbName': 'demo'
+    'url': 'mongodb+srv://void:voidcoderc23@cluster0.0fwy2nn.mongodb.net/groceryDB?retryWrites=true&w=majority',
+    'dbName': 'groceryDB'
 };
