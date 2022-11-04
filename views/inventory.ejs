@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<ul class="notComplete">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory page</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="/.css">
+</head>
+
+<ul class="general-category">
     <% for(var i=0; i<inventory.length; i++) {%>
 
+        <% if(inventory[i].category !== "jewelery") {%>
+
+            <li class="message <%= inventory[i].title %>">
+                <span>
+                    <%= inventory[i].title %>
+                </span>
+                <span>
+                    :::
+                    <%= inventory[i].category %>
+                </span>
+                <span>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+
+                <span>
+                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                </span>
 
 
-        <li class="message <%= inventory[i].title %>">
-            <span>
-                <%= inventory[i].title %>
-            </span>
 
-            <span>
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </span>
-
-            <span>
-                <i class="fa fa-check-square" aria-hidden="true"></i>
-            </span>
+            </li>
+            <% } %>
+                <% } %>
+</ul>
 
 
 
-        </li>
+<ul class="jewelerySection">
+    <% for(var i=0; i<inventory.length; i++) {%>
 
-        <% } %>
+        <% if(inventory[i].category === "jewelery") {%>
+
+            <li class="message <%= inventory[i].priority %>">
+                <span>
+                    <%= inventory[i].title %>
+                </span>
+                <span>
+                    <%= inventory[i].description %>
+                </span>
+                <span>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+
+                <span>
+                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                </span>
+
+
+
+            </li>
+            <% } %>
+                <% } %>
 </ul>

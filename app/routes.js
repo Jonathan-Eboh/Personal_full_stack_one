@@ -29,15 +29,17 @@ module.exports = function (app, passport, db) {
     })
 
 
-    //https://jsonplaceholder.typicode.com/todos/
+    //https://jsonplaceholder.typicode.com/todos/     //testing api
 
-
+    //Mark helped me with turning this into an async call
     //useing async await
     app.get('/inventory', async (req, res) => {
-        const groceryResult = await fetch("https://jsonplaceholder.typicode.com/todos/") //later on put grocery api here
-        const groceryJson = await groceryResult.json()
+        const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
+        const storeJson = await storeResult.json()
+        console.log(storeJson);
+
         //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
-        res.render('inventory.ejs', { inventory: groceryJson })
+        res.render('inventory.ejs', { inventory: storeJson })
     })
 
 
