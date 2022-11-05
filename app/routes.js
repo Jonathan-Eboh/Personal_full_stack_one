@@ -9,6 +9,46 @@ module.exports = function (app, passport, db) {
         res.render('index.ejs');
     });
 
+    //__________store page routes_____________________
+
+    //jewelery
+    app.get('/jewelery', async (req, res) => {
+        const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
+        const storeJson = await storeResult.json()
+        console.log(storeJson);
+
+        //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
+        res.render('jewelery.ejs', { inventory: storeJson })
+    })
+    //electronics
+    app.get('/electronics', async (req, res) => {
+        const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
+        const storeJson = await storeResult.json()
+        console.log(storeJson);
+
+        //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
+        res.render('electronics.ejs', { inventory: storeJson })
+    })
+    //womens
+    app.get('/women', async (req, res) => {
+        const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
+        const storeJson = await storeResult.json()
+        console.log(storeJson);
+
+        //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
+        res.render('womens.ejs', { inventory: storeJson })
+    })
+
+    //mens
+    app.get('/men', async (req, res) => {
+        const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
+        const storeJson = await storeResult.json()
+        console.log(storeJson);
+
+        //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
+        res.render('mens.ejs', { inventory: storeJson })
+    })
+
     // PROFILE SECTION =========================
 
 
@@ -24,10 +64,18 @@ module.exports = function (app, passport, db) {
 
     app.get('/cart', async (req, res) => {
 
-        const result = await db.collection('cart').find().toArray()
-        res.render('cart.ejs', { cart: result })
+        const cartResult = await db.collection('cart').find().toArray()
+        res.render('cart.ejs', { cart: cartResult })
     })
 
+    app.post('/cartAdd', (req, res) => {
+        db.collection('cart').insertOne({ item: req.body.storeItemName, id: req.body.storeItemIdVal, inCart: true }, (err, result) => {
+            if (err) return console.log(err)
+            console.log('saved to database')
+            res.redirect('back');// need to reload whatever page you are currently on
+            //res.redirect('/')
+        })
+    })
 
     //https://jsonplaceholder.typicode.com/todos/     //testing api
 
