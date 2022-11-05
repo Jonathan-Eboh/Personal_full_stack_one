@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cart page</title>
+    <title>Checkout page</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
@@ -18,26 +18,22 @@
 
                 <ul>
                     <li>
-                        <a href="/inventory">Back to shopping!</a>
+                        <a href="/logout">Log Out!</a>
                     </li>
-                    <li>
-                        <a href="/checkout">Pay and check out!</a>
-                    </li>
-
                 </ul>
             </nav>
         </header>
 
+        <h1>BYE THANKS FOR SHOPPING!</h1>
 
-
-        <ul class="cartSection">
+        <ul class="hidden cartSection">
             <% for(var i=0; i<cart.length; i++) {%>
 
 
 
                 <li class="message <%= cart[i].priority %>">
                     <span id="storeItem">
-                        <%= cart[i].item %>
+                        <%= cart[i].title %>
                     </span>
                     <span>
                         <%= cart[i].description %>

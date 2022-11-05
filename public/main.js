@@ -1,6 +1,8 @@
 var thumbUp = document.getElementsByClassName("fa-thumbs-up");
 var trash = document.getElementsByClassName("fa-trash");
 var cart = document.getElementsByClassName("fa-cart-plus");
+//console.log(cart);
+
 
 Array.from(thumbUp).forEach(function (element) {
   element.addEventListener('click', function () {
@@ -30,7 +32,7 @@ Array.from(thumbUp).forEach(function (element) {
 Array.from(cart).forEach(function (element) {
   element.addEventListener('click', function () {
     const itemTitle = this.parentNode.parentNode.childNodes[1].innerText
-    const itemId = document.getElementById("#storeItemId")
+    const itemId = parseFloat(this.parentNode.parentNode.childNodes[7].innerText)//document.getElementById("storeItemId").value
 
 
     fetch('cartAdd', {
@@ -40,7 +42,7 @@ Array.from(cart).forEach(function (element) {
       },
       body: JSON.stringify({
         'item': itemTitle.trim(),
-        'itemID': itemId.trim()
+        'itemID': itemId
       })
     }).then(function (response) {
       window.location.reload()
