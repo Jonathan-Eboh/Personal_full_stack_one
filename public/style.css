@@ -61,12 +61,18 @@ nav ul {
   font-size: 1.2em;
 }
 
-
+h1{
+  text-align: center;
+}
 
 .womensSection{
   display: flex;
+  font-size: .9em;
   outline: 3px solid black;
 }
+
+
+
 
 .womensSection li{
   /* display: flex; */
@@ -76,4 +82,10 @@ nav ul {
 .womensSection span{
   /* display: flex; */
   outline: 3px solid green;
+}
+
+.miniCart{
+  text-align: center;
+  border-radius: 3px;
+  border: 3px solid gray; 
 }

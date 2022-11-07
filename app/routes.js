@@ -16,9 +16,9 @@ module.exports = function (app, passport, db) {
         const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
         const storeJson = await storeResult.json()
         // console.log(storeJson);
-
+        const cartResult = await db.collection('cart').find().toArray()
         //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
-        res.render('jewelery.ejs', { inventory: storeJson })
+        res.render('jewelery.ejs', { inventory: storeJson, miniCart: cartResult })
     })
     //electronics
     app.get('/electronics', async (req, res) => {
@@ -26,10 +26,10 @@ module.exports = function (app, passport, db) {
         const storeJson = await storeResult.json()
         // console.log(storeJson);
         const cartResult = await db.collection('cart').find().toArray()
-        console.log("this is cartResult from the get in electronics route", cartResult);
-        console.log("this is cartResult[0] from the get in electronics route", cartResult[0]);
-        console.log("this is cartResult[0].item from the get in electronics route", cartResult[0].item);
-        console.log("this is cartResult[0]['item'] from the get in electronics route", cartResult[0]["item"]);
+        // console.log("this is cartResult from the get in electronics route", cartResult);
+        // console.log("this is cartResult[0] from the get in electronics route", cartResult[0]);
+        // console.log("this is cartResult[0].item from the get in electronics route", cartResult[0].item);
+        // console.log("this is cartResult[0]['item'] from the get in electronics route", cartResult[0]["item"]);
 
 
         //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
@@ -40,9 +40,9 @@ module.exports = function (app, passport, db) {
         const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
         const storeJson = await storeResult.json()
         // console.log(storeJson);
-
+        const cartResult = await db.collection('cart').find().toArray()
         //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
-        res.render('womens.ejs', { inventory: storeJson })
+        res.render('womens.ejs', { inventory: storeJson, miniCart: cartResult })
     })
 
     //mens
@@ -50,9 +50,9 @@ module.exports = function (app, passport, db) {
         const storeResult = await fetch("https://fakestoreapi.com/products") //later on put grocery api here
         const storeJson = await storeResult.json()
         // console.log(storeJson);
-
+        const cartResult = await db.collection('cart').find().toArray()
         //const result = await db.collection('cart').find().toArray() //can use this logic structure later to loop through grocery items and try to find them in the cart, then do stuff based on that
-        res.render('mens.ejs', { inventory: storeJson })
+        res.render('mens.ejs', { inventory: storeJson, miniCart: cartResult })
     })
 
     // PROFILE SECTION =========================
@@ -72,6 +72,8 @@ module.exports = function (app, passport, db) {
     app.get('/cart', async (req, res) => {
 
         const cartResult = await db.collection('cart').find().toArray()
+        console.log(cartResult);
+
         res.render('cart.ejs', { cart: cartResult })
     })
 
@@ -82,7 +84,7 @@ module.exports = function (app, passport, db) {
         console.log("this is req.body.itemID: ", req.body.itemID);
 
 
-        db.collection('cart').insertOne({ item: req.body.item, id: req.body.itemID, inCart: true }, (err, result) => {
+        db.collection('cart').insertOne({ item: req.body.item, id: req.body.itemID, inCart: true }, (err, result) => { //mini cart feature seems to have broken app during final strech. 
             if (err) return console.log(err)
             console.log('added to cart!')
             res.redirect('back');// need to reload whatever page you are currently on
@@ -93,8 +95,9 @@ module.exports = function (app, passport, db) {
 
     app.delete('/cartRemove', (req, res) => {
         console.log(req.body);
+        console.log("server side item delete", req.body.item);
         //need to use object id here
-        db.collection('cart').findOneAndDelete({ task: req.body.task }, (err, result) => {
+        db.collection('cart').findOneAndDelete({ item: req.body.item }, (err, result) => {
             if (err) return res.send(500, err)
             res.send('item deleted from cart!')
         })
