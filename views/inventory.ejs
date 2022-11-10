@@ -34,6 +34,37 @@
     </header>
     <h1>Featured Items!</h1>
 
+
+    <section class="paymentSection">
+        <form action="/setPayment" method="POST">
+
+
+            <select name="setPayment" id="paymentSelect">
+                <option value="">--Set Payment Option--</option>
+                <option value="high">Bank of America</option>
+                <option value="low">Capital One</option>
+                <option value="mid">Chase</option>
+                <option value="mid">Discover</option>
+            </select>
+            <button type="submit">Choose Payment Method</button>
+        </form>
+    </section>
+
+    <section class="updatePaymentSection">
+        <form action="/updatePayment" method="PUT">
+
+
+            <select name="updatedPayment" id="updatePaymentSelect">
+                <option value="">--Update Payment Option--</option>
+                <option value="high">Bank of America</option>
+                <option value="low">Capital One</option>
+                <option value="mid">Chase</option>
+                <option value="mid">Discover</option>
+            </select>
+            <button type="submit">Update Payment Method</button>
+        </form>
+    </section>
+
     <ul class="general-category">
         <% for(var i=0; i<inventory.length; i++) {%>
 

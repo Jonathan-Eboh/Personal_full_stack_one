@@ -1,6 +1,7 @@
 var thumbUp = document.getElementsByClassName("fa-thumbs-up");
 var trash = document.getElementsByClassName("fa-trash");
 var cart = document.getElementsByClassName("fa-cart-plus");
+var payment = document.getElementsByClassName("fa-money");
 //console.log(cart);
 
 
@@ -50,6 +51,31 @@ Array.from(cart).forEach(function (element) {
   });
 });
 
+
+//pay for item in cart
+Array.from(payment).forEach(function (element) {
+  element.addEventListener('click', function () {
+    const item = this.parentNode.parentNode.childNodes[1].innerText
+    // const msg = this.parentNode.parentNode.childNodes[3].innerText
+    // const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
+    fetch('payForItem', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        'item': item.trim()
+        // 'msg': msg,
+        // 'thumbUp': thumbUp
+      })
+    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        window.location.reload(true)
+      })
+  });
+});
 
 //delete from cart
 Array.from(trash).forEach(function (element) {
