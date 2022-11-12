@@ -18,11 +18,9 @@
 
                 <ul>
                     <li>
-                        <a href="/inventory">Back to shopping!</a>
+                        <a class="link" href="/inventory">Back to shopping!</a>
                     </li>
-                    <li>
-                        <a href="/checkout">Pay and check out!</a>
-                    </li>
+
 
                 </ul>
             </nav>
@@ -30,73 +28,77 @@
 
 
 
-        <ul class="cartSection">
-            <h3>Items ready for purchase</h3>
-            <% for(var i=0; i<cart.length; i++) {%>
+        <section class="cartContain">
+            <ul class="cartSection">
+                <h3>Items ready for purchase</h3>
+                <% for(var i=0; i<cart.length; i++) {%>
 
-                <% if(cart[i].paid === false) {%>
+                    <% if(cart[i].paid === false) {%>
 
-                    <li class="message <%= cart[i].priority %>">
-                        <span id="storeItem" name="storeItemName">
-                            <%= cart[i].item %>
-                        </span>
-                        <span>
-                            <%= cart[i].description %>
-                        </span>
-                        <img src="<%= cart[i].image %>" alt="<%= cart[i].title %>">
-                        <span class="hidden" id="storeItemId" name="storeItemIdVal">
-                            <%= cart[i].id %>
-                        </span>
-                        <span>
-                            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                        </span>
+                        <li class="cartLi  <%= cart[i].priority %>">
+                            <span id="storeItem" name="storeItemName">
+                                <%= cart[i].item %>
+                            </span>
+                            <span>
+                                <%= cart[i].description %>
+                            </span>
+                            <img src="<%= cart[i].image %>" alt="<%= cart[i].title %>">
+                            <span class="hidden" id="storeItemId" name="storeItemIdVal">
+                                <%= cart[i].id %>
+                            </span>
+                            <span>
+                                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                            </span>
 
-                        <span>
-                            <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-                        </span>
+                            <span>
+                                <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+                            </span>
 
-                        <span>
-                            <i class="fa fa-money fa-2x" aria-hidden="true"></i>
-                        </span>
-                    </li>
-                    <% } %>
+                            <span>
+                                <i class="fa fa-money fa-2x" aria-hidden="true"></i>
+                            </span>
+                        </li>
                         <% } %>
-        </ul>
+                            <% } %>
+            </ul>
 
 
-        <ul class="cartSection">
-            <h3>Purchased Items</h3>
-            <% for(var i=0; i<cart.length; i++) {%>
+            <ul class="cartSection">
+                <h3>Purchased Items</h3>
+                <% for(var i=0; i<cart.length; i++) {%>
 
-                <% if(cart[i].paid === true) {%>
+                    <% if(cart[i].paid === true) {%>
 
-                    <li class="message <%= cart[i].priority %>">
-                        <span id="storeItem" name="storeItemName">
-                            <%= cart[i].item %>
-                        </span>
-                        <span>
-                            <%= cart[i].description %>
-                        </span>
-                        <img src="<%= cart[i].image %>" alt="<%= cart[i].title %>">
-                        <span class="hidden" id="storeItemId" name="storeItemIdVal">
-                            <%= cart[i].id %>
-                        </span>
+                        <li class="cartLi <%= cart[i].priority %>">
+                            <span id="storeItem" name="storeItemName">
+                                <%= cart[i].item %>
+                            </span>
+                            <span>
+                                <%= cart[i].description %>
+                            </span>
+                            <img src="<%= cart[i].image %>" alt="<%= cart[i].title %>">
+                            <span class="hidden" id="storeItemId" name="storeItemIdVal">
+                                <%= cart[i].id %>
+                            </span>
 
 
-                    </li>
-                    <% } %>
+                        </li>
                         <% } %>
-        </ul>
+                            <% } %>
+            </ul>
 
-        <section>
+            <section>
 
 
-            <% if(cart.find(item => item.paid === false)) {%>
-                <p> Please pay for your items!</p>
-                <%} else { %>
-                    <a href="/checkout">Check out!</a>
-                    <% } %>
+                <% if(cart.find(item => item.paid === false)) {%>
+                    <span class="cartSpan">Please pay for all your items!</span>
+                    <%} else { %>
+                        <span>
+                            <a class="link" href="/checkout">Check out!</a>
+                        </span>
+                        <% } %>
 
+            </section>
         </section>
 
         <script src="main.js"></script>

@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventory page</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/font-awesome.min.css">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 
 <body>
@@ -18,74 +20,52 @@
 
             <ul>
                 <li>
-                    <a href="/women">Womens Collection</a>
+                    <a class="link" href="/women">Womens Collection</a>
                 </li>
                 <li>
-                    <a href="/men">Mens Collection</a>
+                    <a class="link" href="/men">Mens Collection</a>
                 </li>
                 <li>
-                    <a href="/jewelery">Jewelery Collection </a>
+                    <a class="link" href="/jewelery">Jewelery Collection </a>
                 </li>
                 <li>
-                    <a href="/electronics">Electronics Collection</a>
+                    <a class="link" href="/electronics">Electronics Collection</a>
                 </li>
             </ul>
         </nav>
     </header>
     <h1>Featured Items!</h1>
 
-
-    <section class="paymentSection">
-        <form action="/setPayment" method="POST">
+    <section class="inventoryContain">
 
 
-            <select name="setPayment" id="paymentSelect">
-                <option value="">--Set Payment Option--</option>
-                <option value="high">Bank of America</option>
-                <option value="low">Capital One</option>
-                <option value="mid">Chase</option>
-                <option value="mid">Discover</option>
-            </select>
-            <button type="submit">Choose Payment Method</button>
-        </form>
-    </section>
+        <ul class="general-category">
+            <% for(var i=0; i<inventory.length; i++) {%>
 
-    <section class="updatePaymentSection">
-        <form action="/updatePayment" method="PUT">
+                <% if(inventory[i].category !== "men's clothing" && inventory[i].category !== "women's clothing" ) {%>
 
-
-            <select name="updatedPayment" id="updatePaymentSelect">
-                <option value="">--Update Payment Option--</option>
-                <option value="high">Bank of America</option>
-                <option value="low">Capital One</option>
-                <option value="mid">Chase</option>
-                <option value="mid">Discover</option>
-            </select>
-            <button type="submit">Update Payment Method</button>
-        </form>
-    </section>
-
-    <ul class="general-category">
-        <% for(var i=0; i<inventory.length; i++) {%>
-
-            <% if(inventory[i].category !== "men's clothing" && inventory[i].category !== "women's clothing" ) {%>
-
-                <li class="message <%= inventory[i].title %>">
-                    <span>
-                        <%= inventory[i].title %>
-                    </span>
-                    <span>
-                        :::
-                        <a href="/<%= inventory[i].category %>">Shop this collection!</a>
-                    </span>
-                    <img src="<%= inventory[i].image %>" alt="<%= inventory[i].title %>">
-                </li>
-                <% } %>
+                    <li class="message <%= inventory[i].title %>">
+                        <span>
+                            <%= inventory[i].title %>
+                        </span>
+                        <span>
+                            :::
+                            <a href="/<%= inventory[i].category %>">Shop this collection!</a>
+                        </span>
+                        <img src="<%= inventory[i].image %>" alt="<%= inventory[i].title %>">
+                    </li>
                     <% } %>
-    </ul>
+                        <% } %>
+        </ul>
 
-    <section class="featuedSection">
-
+        <seciton class="featuedContain">
+            <section class="featuedSectionOne center-text">
+                <span>So Many Options!</span>
+            </section>
+            <section class="featuedSectionTwo center-text">
+                <span>Too Many Options!</span>
+            </section>
+        </seciton>
     </section>
     <script src="main.js"></script>
 </body>

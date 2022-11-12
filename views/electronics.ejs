@@ -5,9 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Electronics page</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/font-awesome.min.css">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <head>
@@ -18,19 +19,19 @@
 
                 <ul>
                     <li>
-                        <a href="/women">Womens Collection</a>
+                        <a class="link" href="/women">Womens Collection</a>
                     </li>
                     <li>
-                        <a href="/men">Mens Collection</a>
+                        <a class="link" href="/men">Mens Collection</a>
                     </li>
                     <li>
-                        <a href="/jewelery">Jewelery Collection </a>
+                        <a class="link" href="/jewelery">Jewelery Collection </a>
                     </li>
                     <li>
-                        <a href="/electronics">Electronics Collection</a>
+                        <a class="link" href="/electronics">Electronics Collection</a>
                     </li>
                     <li>
-                        <a href="/inventory">Home</a>
+                        <a class="link" href="/inventory">Home</a>
                     </li>
                 </ul>
             </nav>
@@ -38,65 +39,69 @@
 
 
 
-        <ul class="electronicsSection">
-            <% for(var i=0; i<inventory.length; i++) {%>
+        <section class="mainContainer">
+            <section class="itemCol">
+                <ul class="mensSection">
+                    <% for(var i=0; i<inventory.length; i++) {%>
 
-                <% if(inventory[i].category === "electronics") {%>
+                        <% if(inventory[i].category === "electronics") {%>
 
-                    <li class="message <%= inventory[i].priority %>">
-                        <span id="storeItem" name="storeItemName">
-                            <%= inventory[i].title %>
-                        </span>
-                        <span>
-                            <%= inventory[i].description %>
-                        </span>
-                        <img src="<%= inventory[i].image %>" alt="<%= inventory[i].title %>">
-                        <span class="hidden" id="storeItemId" name="storeItemIdVal">
-                            <%= inventory[i].id %>
-                        </span>
-                        <span>
-                            <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-                        </span>
+                            <section class="itemBox">
+                                <li class="message">
+                                    <span>
+                                        <%= inventory[i].title %>
+                                    </span>
+                                    <span>
+                                        <%= inventory[i].description %>
+                                    </span>
+                                    <img src="<%= inventory[i].image %>" alt="<%= inventory[i].title %>">
+                                    <span>
+                                        <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+                                    </span>
 
 
 
-                    </li>
-                    <% } %>
+                                </li>
+                            </section>
+                            <% } %>
+                                <% } %>
+                </ul>
+            </section>
+            <section class="col">
+                <h3>MiniCart</h3>
+                <ul class="miniCart">
+                    <a href="/cart">Go to cart!</a>
+                    <% for(var i=0; i< miniCart.length; i++) {%>
+
+
+
+                        <li class="mini">
+                            <span id="storeItem" name="storeItemName">
+                                <%= miniCart[i].item %>
+                            </span>
+                            <span>
+                                <%= miniCart[i].description %>
+                            </span>
+                            <img src="<%= miniCart[i].image %>" alt="<%= miniCart[i].title %>">
+                            <span class="hidden" id="storeItemId" name="storeItemIdVal">
+                                <%= miniCart[i].id %>
+                            </span>
+                            <span>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </span>
+
+                            <span>
+
+                            </span>
+
+
+
+                        </li>
+
                         <% } %>
-        </ul>
-
-        <h3>MiniCart</h3>
-        <ul class="miniCart">
-            <a href="/cart">Go to cart!</a>
-            <% for(var i=0; i< miniCart.length - 1; i++) {%>
-
-
-
-                <li class="message">
-                    <span id="storeItem" name="storeItemName">
-                        <%= miniCart[i].item %>
-                    </span>
-                    <span>
-                        <%= miniCart[i].description %>
-                    </span>
-                    <img src="<%= miniCart[i].image %>" alt="">
-                    <span class="hidden" id="storeItemId" name="storeItemIdVal">
-                        <%= miniCart[i].id %>
-                    </span>
-                    <span>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </span>
-
-                    <span>
-                        <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
-                    </span>
-
-
-
-                </li>
-
-                <% } %>
-        </ul>
+                </ul>
+            </section>
+        </section>
 
 
         <script src="main.js"></script>
