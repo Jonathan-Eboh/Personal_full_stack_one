@@ -3,8 +3,12 @@
 
 
 Tech used: 
+
 Front end: HTML, CSS, JavaScript, store simulation API,
+
 Back end: Node js, mongo db
+
+If you have to ask about the price then you cant afford it...
 
 A full stack web application that allows the user to experience the thrill of online shopping
 
