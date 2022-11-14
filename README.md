@@ -15,6 +15,9 @@ It was really enjoyable and a great learning experience to build out an commerce
 for this one the paradigm takes the structure of
 
 Create: Allows the user to place items into a cart, creating a new mongo db document representing the item
+
 Read: The mini cart and full cart features allow the user to see a list of all the items they have placed in their cart
+
 Update: Once in the cart the user can then purchase their items, changing a flag on the back end in the db that registers the item as purchased
+
 Delete: The user has the option to delete items from their cart both in the mini cart and full cart.
